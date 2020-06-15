@@ -6,11 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showthis = 'Recipe';
-  title = 'shopping';
+
   constructor() { }
 
-  navClicked(navData: { navItem: string }) {
-    this.showthis = navData.navItem;
-  }
+
 }
