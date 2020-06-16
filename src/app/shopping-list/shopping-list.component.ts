@@ -8,11 +8,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css'],
 })
-export class ShoppingListComponent implements OnInit,OnDestroy {
+export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredientSubscription: Subscription;
   ingredients: Ingredient[];
 
-  // @Input() addThisShit: Ingredient;
+
   constructor(private slService: ShoppingListService) { }
 
   ngOnInit(): void {
@@ -20,10 +20,11 @@ export class ShoppingListComponent implements OnInit,OnDestroy {
     this.ingredientSubscription = this.slService.ingredientAddedEmitter.subscribe((data: Ingredient[]) => { this.ingredients = data; });
   }
 
-  // addingShit(shit: Ingredient) {
-  //   this.ingredients.push(shit);
-  // }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.ingredientSubscription.unsubscribe();
+  }
+  onEditItem(index: number) {
+    this.slService.editIngredientSubject.next(index);
+
   }
 }
