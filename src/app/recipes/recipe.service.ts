@@ -3,8 +3,8 @@ import { Recipe } from './recipes.model';
 import { Subject } from 'rxjs';
 
 export class RecipeService {
-  recipeChangedSubject= new Subject<Recipe[]>
-();
+  recipeChangedSubject = new Subject<Recipe[]>
+    ();
   private recipes: Recipe[] = [
     new Recipe(
       'Peanut butter sandwich',
@@ -41,5 +41,9 @@ export class RecipeService {
     this.recipes[index] = recipe;
     this.recipeChangedSubject.next(this.recipes.slice());
 
+  }
+  deleteThisRecipe(index: number) {
+    this.recipes.splice(index, 1);
+    this.recipeChangedSubject.next(this.recipes.slice());
   }
 }
